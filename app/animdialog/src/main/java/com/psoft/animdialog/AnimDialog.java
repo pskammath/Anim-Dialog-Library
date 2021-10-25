@@ -107,8 +107,14 @@ public class AnimDialog {
 
        if(animate)
        {
-           Animation animation= AnimationUtils.loadAnimation(c, this.animation);
+
+           Animation animation= AnimationUtils.loadAnimation(c,R.anim.side_slide);
+           Animation animation2= AnimationUtils.loadAnimation(c,R.anim.side_slide);
            animation.setDuration(duration);
+           animation2.setDuration(duration);
+           cancelt.startAnimation(animation);
+           okt.startAnimation(animation2);
+
        }
 
         imageView.setBackgroundResource(drawableRes);
