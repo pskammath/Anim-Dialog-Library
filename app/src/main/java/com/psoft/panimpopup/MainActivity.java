@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        new AnimDialog(this, 0, new DialogTheme(R.color.black, R.color.black,
+        new AnimDialog(this, new DialogTheme(R.color.black, R.color.black,
                 R.color.white,R.color.white,R.color.black, R.color.black))
                 .makeDialog(0, "Sample",
                         "Test",

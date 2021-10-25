@@ -24,10 +24,9 @@ public class AnimDialog {
 
     public AnimDialog(){}
 
-    public AnimDialog(Context c,int animation_xml,DialogTheme theme)
+    public AnimDialog(Context c,DialogTheme theme)
     {
         this.c=c;
-        this.animation=animation_xml;
         this.theme=theme;
     }
 
