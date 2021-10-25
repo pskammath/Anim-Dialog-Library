@@ -104,8 +104,8 @@ public class AnimDialog {
 
         if (animate) {
 
-            Animation animation = AnimationUtils.loadAnimation(c, R.anim.side_slide);
-            Animation animation2 = AnimationUtils.loadAnimation(c, R.anim.side_slide);
+            Animation animation = AnimationUtils.loadAnimation(c, R.anim.slide_left);
+            Animation animation2 = AnimationUtils.loadAnimation(c, R.anim.side_slide_right);
             animation.setDuration(duration);
             animation2.setDuration(duration);
             cancelt.startAnimation(animation);
@@ -246,4 +246,139 @@ public class AnimDialog {
                     }, true, 5000
             );
 
+
+# custom_dialog_layout.xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/cus_dlg_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="TextView"
+            android:textColor="#2E3F65"
+            android:textSize="@dimen/text_large" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cus_dlg_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="@dimen/text_small" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:cardCornerRadius="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bottom_round_square"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/cus_dlg_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/design_default_color_on_secondary"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="#4C4A4A"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/cus_dlg_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@color/design_default_color_on_secondary"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Ok"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+    
+# progressdialogbg.xml
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <padding
+        android:bottom="7dp"
+        android:left="7dp"
+        android:right="7dp"
+        android:top="7dp" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#FFFFFF" />
+    <!--android:dashGap="1dp"
+    android:dashWidth="4dp"-->
+    <corners android:radius="15dp" />
+
+    </shape>
+    
+# slide_left.xml    (animation)
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <set
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--THIS CODE IS FOR SIDE ANIMATION-->
+    <translate
+        android:duration="1500"
+        android:fromXDelta="-50%"
+        android:fromYDelta="0%" />
+
+    <alpha
+        android:duration="500"
+        android:fromAlpha="0.1"
+        android:toAlpha="1.0" />
+    </set>
+    
+  # slide_right.xml
+  
+     <?xml version="1.0" encoding="utf-8"?>
+    <set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shareInterpolator="false" >
+    <translate android:duration="500" android:fromXDelta="100%" android:toXDelta="0%" />
+    <alpha  android:fromAlpha="0.0" android:toAlpha="1.0" />
+    </set>
 
