@@ -137,11 +137,11 @@ public class AnimDialog {
 
 # DialogTheme Class
 
-package com.psoft.animdialog;
+    package com.psoft.animdialog;
 
 
 
-public class DialogTheme {
+    public class DialogTheme {
     int button1Bg;
     int button2Bg;
     int button1Fg;
@@ -229,7 +229,7 @@ public class DialogTheme {
             );
 # Using default dialog
 
- new AnimDialog(context, null).makeDialog(
+     new AnimDialog(context, null).makeDialog(
                     R.drawable.ic_info, "Popup Title", "Popup Message",
                     "Button 1 caption", "Button 2 caption", false, true, new ButtonClickListener() {
                         @Override
