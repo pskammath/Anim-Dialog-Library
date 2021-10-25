@@ -209,11 +209,9 @@ public class DialogTheme {
 }
 
 
-# Using the Dialog
+# Using Custom themed Dialog
 
-    new AnimDialog(c, new DialogTheme(R.color.design_default_color_background,
-                    R.color.design_default_color_background,R.color.design_default_color_background,R.color.design_default_color_background
-            ,R.color.design_default_color_background,R.color.design_default_color_background)).makeDialog(
+    new AnimDialog(context, new DialogTheme(color1,color2,color3,color4,color5,color6)).makeDialog(
                     R.drawable.ic_info, "Popup Title", "Popup Message",
                     "Button 1 caption", "Button 2 caption", false, true, new ButtonClickListener() {
                         @Override
@@ -229,4 +227,23 @@ public class DialogTheme {
                         }
                     }, true, 5000
             );
+# Using default dialog
+
+ new AnimDialog(context, null).makeDialog(
+                    R.drawable.ic_info, "Popup Title", "Popup Message",
+                    "Button 1 caption", "Button 2 caption", false, true, new ButtonClickListener() {
+                        @Override
+                        public void onOk() {
+                            //on button 1 click
+                        }
+
+                        @Override
+                        public void onCancel() {
+                            
+                            //on button2 click
+
+                        }
+                    }, true, 5000
+            );
+
 
