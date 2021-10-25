@@ -8,10 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.psoft.*;
-
-
-
 
 public class AnimDialog {
 
@@ -22,35 +20,31 @@ public class AnimDialog {
 
     Context c;
 
-    public AnimDialog(){}
-
-    public AnimDialog(Context c,DialogTheme theme)
-    {
-        this.c=c;
-        this.theme=theme;
+    public AnimDialog() {
     }
 
-    public void show()
-    {
+    public AnimDialog(Context c, DialogTheme theme) {
+        this.c = c;
+        this.theme = theme;
+    }
 
-        visible=true;
+    public void show() {
+
+        visible = true;
         mDialog.show();
     }
 
 
-
-
-
     public void makeDialog(
-            int drawableRes, String title, String message, String ok, String cancel, boolean cancelable, boolean cancelVisible, ButtonClickListener lstnr, boolean animate,int duration) {
-        setDefaults(c, drawableRes, title, message, ok, cancel, cancelable, cancelVisible, lstnr, animate,duration);
-        visible=true;
+            int drawableRes, String title, String message, String ok, String cancel, boolean cancelable, boolean cancelVisible, ButtonClickListener lstnr, boolean animate, int duration) {
+        setDefaults(c, drawableRes, title, message, ok, cancel, cancelable, cancelVisible, lstnr, animate, duration);
+        visible = true;
         mDialog.show();
     }
 
     public void dismiss() {
         if (mDialog != null) {
-            visible=false;
+            visible = false;
             mDialog.dismiss();
             mDialog = null;
         }
@@ -59,7 +53,6 @@ public class AnimDialog {
     public boolean isShowing() {
         return visible;
     }
-
 
 
     public void setDefaults(
@@ -76,15 +69,14 @@ public class AnimDialog {
 
         mDialog.setContentView(R.layout.custom_dialog_layout);
 
-        ImageView imageView=mDialog.findViewById(R.id.icon);
-        TextView titlet= mDialog.findViewById(R.id.cus_dlg_title);
-        TextView content=mDialog.findViewById(R.id.cus_dlg_content);
-        TextView okt= mDialog.findViewById(R.id.cus_dlg_ok);
-        TextView cancelt= mDialog.findViewById(R.id.cus_dlg_cancel);
+        ImageView imageView = mDialog.findViewById(R.id.icon);
+        TextView titlet = mDialog.findViewById(R.id.cus_dlg_title);
+        TextView content = mDialog.findViewById(R.id.cus_dlg_content);
+        TextView okt = mDialog.findViewById(R.id.cus_dlg_ok);
+        TextView cancelt = mDialog.findViewById(R.id.cus_dlg_cancel);
 
 
-        if(theme!=null)
-        {
+        if (theme != null) {
             titlet.setTextColor(theme.titleFg);
             content.setTextColor(theme.messageFg);
             okt.setTextColor(theme.button1Fg);
@@ -94,45 +86,48 @@ public class AnimDialog {
         }
 
 
-
         titlet.setText(title);
         content.setText(message);
-        okt.setText(ok.equals("")?"OK":ok);
-        cancelt.setText(cancel.equals("")?"CANCEL":cancel);
-        if(!cancelVisible)
+        okt.setText(ok.equals("") ? "OK" : ok);
+        cancelt.setText(cancel.equals("") ? "CANCEL" : cancel);
+        if (!cancelVisible)
             cancelt.setVisibility(View.GONE);
 
 
+        if (animate) {
 
-       if(animate)
-       {
+            Animation animation = AnimationUtils.loadAnimation(c, R.anim.side_slide);
+            Animation animation2 = AnimationUtils.loadAnimation(c, R.anim.side_slide_r);
+            animation.setDuration(duration);
+            animation2.setDuration(duration);
+            cancelt.startAnimation(animation);
+            okt.startAnimation(animation2);
 
-           Animation animation= AnimationUtils.loadAnimation(c,R.anim.side_slide);
-           Animation animation2= AnimationUtils.loadAnimation(c,R.anim.side_slide);
-           animation.setDuration(duration);
-           animation2.setDuration(duration);
-           cancelt.startAnimation(animation);
-           okt.startAnimation(animation2);
-
-       }
+        }
 
         imageView.setBackgroundResource(drawableRes);
 
         okt.setOnClickListener(v -> {
-            if(mDialog!=null)
+            if (mDialog != null)
                 mDialog.dismiss();
             lstnr.onOk();
         });
         cancelt.setOnClickListener(v -> {
-            if(mDialog!=null)
+            if (mDialog != null)
                 mDialog.dismiss();
             lstnr.onCancel();
+
+
+
+
         });
 
     }
 
-    public interface ButtonClickListener{
+    public interface ButtonClickListener {
         void onOk();
+
         void onCancel();
     }
+
 }
