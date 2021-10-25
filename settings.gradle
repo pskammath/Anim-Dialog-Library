@@ -1,0 +1,5 @@
+rootProject.name = "PAnimPopup"
+include ':app'
+include ':AnimDialog'
+include ':AnimDialog:animdialog'
+include ':app:animdialog'
